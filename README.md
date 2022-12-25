@@ -1,4 +1,4 @@
-﻿Mod for the game Farthest Frontier that will queue rebuilding of buildings destroyed by raiders.  Trigger the rebuilds by using the hotkey (**CTRL+R** by default).  Hotkey can be modified in UserData\BulkRebuild.cfg after the game runs once.
+﻿Mod for the game Farthest Frontier that will queue rebuilding of buildings destroyed by raiders.  Trigger the rebuilds by using the hotkey (**CTRL+R** by default).  Hotkey can be modified in `Farthest Frontier\UserData\BulkRebuild.cfg` after the game runs once.
 
 Tested with:  
 MelonLoader 0.5.7  
