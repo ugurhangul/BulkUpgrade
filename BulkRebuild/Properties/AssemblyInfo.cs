@@ -32,8 +32,8 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0.0")]
+[assembly: AssemblyVersion("0.1.1.0")]
+[assembly: AssemblyFileVersion("0.1.1.0")]
 
-[assembly: MelonInfo(typeof(BulkRebuildMod), "BulkRebuild", "0.1", "Cabadam")] //MelonInfo(typeof(ClassOfMod), “Game Mod Name”, “Version”, “Author”)
+[assembly: MelonInfo(typeof(BulkRebuildMod), "BulkRebuild", "0.1.1", "Cabadam")] //MelonInfo(typeof(ClassOfMod), “Game Mod Name”, “Version”, “Author”)
 [assembly: MelonGame("Crate Entertainment", "Farthest Frontier")] //MelonGame(“Studio”, “Game”)]

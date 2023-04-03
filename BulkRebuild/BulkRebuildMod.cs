@@ -1,6 +1,7 @@
-﻿using MelonLoader;
+﻿using Il2Cpp;
+using MelonLoader;
+using MelonLoader.Utils;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace BulkRebuild
         {
             LoggerInstance.Msg("Loading configuration ...");
             modCategory = MelonPreferences.CreateCategory("BulkRebuild");
-            modCategory.SetFilePath(Path.Combine(MelonUtils.UserDataDirectory, "BulkRebuild.cfg"));
+            modCategory.SetFilePath(Path.Combine(MelonEnvironment.UserDataDirectory, "BulkRebuild.cfg"));
             triggerKey = modCategory.CreateEntry("TriggerKey", KeyCode.R, null, null, false, false, null, null);
             LoggerInstance.Msg($"KeyCode is CTRL+{triggerKey.Value}");
         }
