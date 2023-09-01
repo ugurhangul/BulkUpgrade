@@ -1,13 +1,14 @@
-﻿using Il2Cpp;
+﻿using System;
+using System.IO;
+using System.Linq;
+using Il2Cpp;
 using MelonLoader;
 using MelonLoader.Utils;
-using System;
-using System.IO;
 using UnityEngine;
 
-namespace BulkRebuild
+namespace BulkUpgrade
 {
-    public class BulkRebuildMod : MelonMod
+    public class BulkUpgradeMod : MelonMod
     {
         private MelonPreferences_Category modCategory;
         private MelonPreferences_Entry<KeyCode> triggerKey;
@@ -17,9 +18,9 @@ namespace BulkRebuild
         public override void OnInitializeMelon()
         {
             LoggerInstance.Msg("Loading configuration ...");
-            modCategory = MelonPreferences.CreateCategory("BulkRebuild");
-            modCategory.SetFilePath(Path.Combine(MelonEnvironment.UserDataDirectory, "BulkRebuild.cfg"));
-            triggerKey = modCategory.CreateEntry("TriggerKey", KeyCode.R, null, null, false, false, null, null);
+            modCategory = MelonPreferences.CreateCategory("BulkUpgrade");
+            modCategory.SetFilePath(Path.Combine(MelonEnvironment.UserDataDirectory, "BulkUpgrade.cfg"));
+            triggerKey = modCategory.CreateEntry("TriggerKey", KeyCode.U, null, null, false, false, null, null);
             LoggerInstance.Msg($"KeyCode is CTRL+{triggerKey.Value}");
         }
 
@@ -40,7 +41,7 @@ namespace BulkRebuild
             }
             catch (Exception ex)
             {
-                LoggerInstance.Error("Failed to rebuild buildings.", ex);
+                LoggerInstance.Error("Failed to upgrade buildings.", ex);
             }
         }
 
@@ -60,12 +61,16 @@ namespace BulkRebuild
 
             if (gameManager != null)
             {
-                LoggerInstance.Msg($"Searching for building ruins...");
-                var ruins = UnityEngine.Object.FindObjectsOfType<BuildingRuins>();
-                LoggerInstance.Msg($"Found {ruins.Count} ruins.");
-                foreach (var ruin in ruins)
+                LoggerInstance.Msg($"Searching for building upgrade...");
+                var buildings = UnityEngine.Object.FindObjectsOfType<Building>();
+                LoggerInstance.Msg($"Found {buildings.Count(c=>c.buildingUpgradeInfo != null && c.buildingUpgradeInfo.canUpgradeNow)} buildings.");
+                foreach (var ruin in buildings)
                 {
-                    ruin.Rebuild();
+                    if (ruin.buildingUpgradeInfo != null && ruin.buildingUpgradeInfo.canUpgradeNow)
+                    {
+                        ruin.UpgradeBuilding();
+                    }
+                    
                 }
             }
         }
